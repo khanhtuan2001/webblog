@@ -1,0 +1,117 @@
+﻿@model Webblog.Models.Post
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Edit</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Edit" asp-area="Admin" asp-controller="Posts" asp-route-id="@Model.PostId" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-row">
+                <input type="hidden" asp-for="PostId" />
+                <input type="hidden" asp-for="CreateDate" />
+                <input type="hidden" asp-for="Author" />
+                <input type="hidden" asp-for="AccountId" />
+                <input type="hidden" asp-for="Thumb" />
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label class="control-label">TIÊU ĐỀ</label>
+                        <input asp-for="Title" class="form-control" type="text" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group  col-md-4">
+                        <label class="control-label">DANH MỤC</label>
+                        <select class="form-control select2" asp-for="CatId" asp-items="@ViewBag.DanhMuc" required>
+                            <option value="0" selected>danh muc goc</option>
+                        </select>
+
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label">ẢNH ĐẠI DIỆN</label>
+                        <input asp-for="Thumb" class="form-control" type="file" />
+                        <span asp-validation-for="Thumb" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="control-label">TAGS</label>
+                        <input asp-for="Tags" class="form-control" />
+                        <span asp-validation-for="Tags" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="control-label">NỘI DUNG</label>
+                        <textarea asp-for="Contents" class="form-control Contents"></textarea>
+                        <span asp-validation-for="Contents" class="text-danger"></span>
+                    </div>
+
+
+
+
+
+
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>TRANG THAI</label>
+                            <br />
+
+                            <input type="checkbox" asp-for="Published"><span> Active</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>HOT</label>
+                            <br />
+
+                            <input type="checkbox" asp-for="IsHot"><span> IS HOT</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>NEW FEED</label>
+                            <br />
+
+                            <input type="checkbox" asp-for="IsNewfeed"><span> IS NEW FEED</span>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" /> |
+                    <a asp-action="Index" class="btn btn-primary">Back to List</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts{
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            $('#Contents').summernote({
+                fontName: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courer New'],
+                StyleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5'],
+                height: 200,
+                minHeight: null,
+                maxHeeght: null,
+                focus: true
+
+            });
+
+        })
+    </script>
+}

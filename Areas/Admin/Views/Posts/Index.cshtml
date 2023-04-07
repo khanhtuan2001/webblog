@@ -1,0 +1,182 @@
+﻿
+
+@using PagedList.Core.Mvc;
+
+@model PagedList.Core.IPagedList<Webblog.Models.Post>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Index</h1>
+
+
+<div class="main-content-container container-fluid px-4">
+
+    <!-- Default Light Table -->
+    <div class="row">
+        <div class="col">
+            <div class="card card-small mb-4">
+                <div class="card-header border-bottom">
+                    <h6 class="m-0">Active Users</h6>
+
+
+                </div>
+
+                <div class="card-body p-0 pb-3 text-center">
+                    <table class="table mb-0">
+                        <thead class="bg-light">
+                            <tr>
+
+                                <th scope="col" class="border-0">ID</th>
+                                <th scope="col" class="border-0">TITLE</th>
+                                <th scope="col" class="border-0">danh muc</th>
+                                <th scope="col" class="border-0">chi tiet</th>
+
+                                <th scope="col" class="border-0"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                string url = $"/{item.Alias}.html";
+                                <tr>
+                                    <th scope="row">@item.PostId</th>
+                                    <td>
+
+                                        <a href="/@url">@item.Title</a>
+                                    </td>
+                                    <td>
+                                        <a href="/@item.Cat.Alias">@item.Cat.CatName</a>
+                                    </td>
+                                    <td>
+                                        @if (item.Published == true)
+                                        {
+                                            <span class="badge badge-primary">Public</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge badge-primary"> Non-Public</span>
+                                        }
+                                    </td>
+
+
+                                    <td>
+                                        <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.PostId">Edit</a> |
+                                        <a class="btn btn-success" asp-action="Details" asp-route-id="@item.PostId">Details</a> |
+                                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.PostId">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                    <div aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <pager class="pager-container" list="@Model" options="@PagedListRenderOptions.Bootstrap4PageNumbersPlusPrevAndNext" asp-area="Admin" asp-action="Index" asp-controller="Posts" />
+
+                        </ul>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@*<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contents)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Thumb)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Published)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Alias)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tags)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsHot)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsNewfeed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Account)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cat)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contents)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Thumb)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Published)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Alias)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tags)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsHot)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsNewfeed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Account.AccountId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cat.CatId)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.PostId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.PostId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.PostId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>*@

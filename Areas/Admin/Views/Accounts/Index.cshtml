@@ -1,0 +1,171 @@
+﻿
+
+@using PagedList.Core.Mvc;
+
+@model PagedList.Core.IPagedList<Webblog.Models.Account>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Index</h1>
+
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div class="main-content-container container-fluid px-4">
+
+    <!-- Default Light Table -->
+    <div class="row">
+        <div class="col">
+            <div class="card card-small mb-4">
+                <div class="card-header border-bottom">
+                    <h6 class="m-0">Active Users</h6>
+
+
+                </div>
+
+                <div class="card-body p-0 pb-3 text-center">
+                    <table class="table mb-0">
+                        <thead class="bg-light">
+                            <tr>
+
+                                <th scope="col" class="border-0">ID</th>
+                                <th scope="col" class="border-0">HỌ VÀ TÊN</th>
+                                <th scope="col" class="border-0">TRẠNG THÁI</th>
+                                <th scope="col" class="border-0">QUYỀN TRUY CẬP</th>
+
+                                <th scope="col" class="border-0"> </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                               
+                                <tr>
+                                    <th scope="row">@item.AccountId</th>
+                                    <td>
+
+                                        <p>họ và tên: @item.FullName</p>
+                                        <p>email: @item.Email</p>
+                                        <p>phone: @item.Phone</p>
+                                        <p>lastlogin: @item.LastLogin</p>
+                                    </td>
+                               
+                                    <td>
+                                        @if (item.Active == true)
+                                        {
+                                            <span class="badge badge-primary">Active</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge badge-primary">block</span>
+                                        }
+                                    </td>
+
+
+                                    <td>
+                                        <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.AccountId">Edit</a> |
+                                        <a class="btn btn-success" asp-action="Details" asp-route-id="@item.AccountId">Details</a> |
+                                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.AccountId">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                    <div aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <pager class="pager-container" list="@Model" options="@PagedListRenderOptions.Bootstrap4PageNumbersPlusPrevAndNext" asp-area="Admin" asp-action="Index" asp-controller="Accounts" />
+
+                        </ul>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+@*<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Active)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastLogin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Role)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Salt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Active)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastLogin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role.RoleId)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.AccountId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.AccountId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.AccountId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>*@

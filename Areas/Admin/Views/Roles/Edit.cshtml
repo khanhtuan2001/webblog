@@ -1,0 +1,38 @@
+﻿@model Webblog.Models.Role
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Edit</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="RoleId" />
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label class="control-label">Tên quyền truy cập</label>
+                    <input asp-for="RoleName" class="form-control is-valid" />
+                    <span asp-validation-for="RoleName" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label">mô tả</label>
+                    <input asp-for="RoleDecription" class="form-control is-valid" />
+                    <span asp-validation-for="RoleDecription" class="text-danger"></span>
+                </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-success" /> |
+                    <a asp-action="Index" class="btn btn-primary">Back to List</a>
+                </div>
+        </form>
+    </div>
+</div>
+
+
+

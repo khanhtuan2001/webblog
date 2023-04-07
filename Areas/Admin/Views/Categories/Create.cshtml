@@ -1,0 +1,117 @@
+﻿@model Webblog.Models.Category
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Category</h4>
+<hr />
+@*<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label class="control-label">Têm quyền truy cập</label>
+                    <input asp-for="RoleName" type="text" class="form-control is-valid" id="validationServer01" placeholder="nhập mã" value="" required>
+
+                    <span asp-validation-for="RoleName" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label">mô tả</label>
+                    <input asp-for="RoleDecription" type="text" class="form-control is-valid" id="validationServer02" placeholder="nhập mô tả" value="" required>
+
+                    <span asp-validation-for="RoleDecription" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-success" /> |
+                <a asp-action="Index" class="btn btn-primary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>*@
+
+
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Create" asp-area="Admin" asp-controller="Categories" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-row">
+                <div class="form-group  col-md-4">
+                    <label class="control-label">TÊN DANH MỤC</label>
+                    <input asp-for="CatName" class="form-control" type="text" />
+                    <span asp-validation-for="CatName" class="text-danger"></span>
+                </div>
+                <div class="form-group  col-md-4">
+                    <label  class="control-label">DANH MỤC</label>
+                    <select class="form-control select2" asp-for="Parent" asp-items="@ViewBag.DanhMucGoc" required>
+                        <option value="0" selected>danh muc goc</option>
+                    </select>
+                 
+                </div>
+                <div class="form-group  col-md-4">
+                    <label class="control-label">SẮP XẾP</label>
+                    <input asp-for="Ordering" class="form-control" type="number" value="0" />
+                    <span asp-validation-for="Ordering" class="text-danger"></span>
+                </div>
+                <div class="form-group  col-md-12">
+                    <label class="control-label">MÔ TẢ</label>
+                    <input asp-for="Decription" class="form-control" type="text" />
+                    <span asp-validation-for="Decription" class="text-danger"></span>
+                </div>
+                <div class="form-group  col-md-6">
+                    <label class="control-label">ẢNH ĐẠI DIỆN</label>
+                    <input asp-for="Thumb" class="form-control" type="file" />
+                    <span asp-validation-for="Thumb" class="text-danger"></span>
+                </div>
+                <div class="form-group  col-md-6">
+                    <label class="control-label">COVER</label>
+                    <input asp-for="Cover" class="form-control" type="file" />
+                    <span asp-validation-for="Cover" class="text-danger"></span>
+                </div>
+                <div class="form-group  col-md-6">
+                    <label  class="control-label">ICON</label>
+                    <input asp-for="Icon" class="form-control" type="file" />
+                    <span asp-validation-for="Icon" class="text-danger"></span>
+                </div>
+               <div class="col-md-6">
+                   <div class="form-group">
+                       <label>TRANG THAI</label>
+                       <br />
+
+                       <input type="checkbox" asp-for="Published"><span> Active</span>
+                   </div>
+               </div>
+                <div class="form-group  col-md-12">
+                    <label  class="control-label"> TIÊU ĐỀ</label>
+                    <input asp-for="Title" class="form-control" type="text"/>
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+           
+                <div class="form-group  col-md-12">
+                    <label asp-for="MetaDesc" class="control-label"></label>
+                    <input asp-for="MetaDesc" class="form-control" type="text"/>
+                    <span asp-validation-for="MetaDesc" class="text-danger"></span>
+                </div>
+                <div class="form-group  col-md-12">
+                    <label asp-for="Metakey" class="control-label"></label>
+                    <input asp-for="Metakey" class="form-control" type="text"/>
+                    <span asp-validation-for="Metakey" class="text-danger"></span>
+                </div>
+            </div>
+          
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-success" /> |
+                <a asp-action="Index" class="btn btn-primary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
